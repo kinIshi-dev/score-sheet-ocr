@@ -1,0 +1,21 @@
+# OCR Engine
+pytesseract==0.3.10
+
+# Image Processing
+Pillow==10.4.0
+opencv-python==4.10.0.84
+numpy==1.26.4
+
+# PDF Support (optional, for scanning PDFs)
+pdf2image==1.17.0
+
+# Data Processing
+pandas==2.2.3
+
+# Testing
+pytest==8.3.4
+pytest-cov==6.0.0
+
+# Development
+black==24.10.0
+flake8==7.1.1

@@ -1,0 +1,90 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+
+# OCR specific
+*.pyc
+*.pyo
+temp/
+tmp/
+output/
+cache/
+
+# Test data (keep structure, ignore actual images)
+data/raw/*.jpg
+data/raw/*.jpeg
+data/raw/*.png
+data/raw/*.pdf
+data/processed/*.jpg
+data/processed/*.jpeg
+data/processed/*.png
+data/results/*.json
+data/results/*.csv
+
+# Keep example files
+!data/raw/example.jpg
+!data/processed/example.jpg
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+
+# Distribution / packaging
+*.whl
