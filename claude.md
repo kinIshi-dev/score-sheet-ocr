@@ -13,20 +13,43 @@ This project provides OCR (Optical Character Recognition) functionality for JPA 
 
 ## Development Guidelines
 
+### Language Policy
+
+This project uses a **bilingual approach** for documentation and code:
+
+**Japanese (日本語)**:
+- `ROADMAP.md` - Project roadmap and planning
+- `TODO.md` - Current sprint tasks and todos
+- `docs/scoresheet_format.md` - JPA score sheet format documentation
+- `docs/development.md` - Development guide for contributors
+- All project planning and task management files
+
+**English**:
+- `README.md` - Project overview (standard for GitHub, international audience)
+- `claude.md` - This file (optimized for Claude Code comprehension)
+- Code comments and docstrings (developer convention, tool compatibility)
+- Git commit messages (Git standard, future scalability)
+- Variable names, function names, class names (English is standard in programming)
+
+**Rationale**:
+- Japanese for internal planning improves team communication and understanding
+- English for code and public-facing docs maintains international standards
+- This dual approach balances local collaboration with global best practices
+
 ### Code Style
 - Follow PEP 8 Python style guidelines
 - Use Black for code formatting
 - Use Flake8 for linting
-- Use clear, descriptive variable and function names
-- Add docstrings to all functions and classes
-- Add comments for complex logic
+- Use clear, descriptive variable and function names (in English)
+- Add docstrings to all functions and classes (in English)
+- Add comments for complex logic (in English)
 - Keep functions focused and modular
 - Type hints encouraged for better code clarity
 
 ### Git Workflow
 - Main branch: `main`
 - Create feature branches for new functionality
-- Write clear, descriptive commit messages
+- Write clear, descriptive commit messages (in English)
 - Use conventional commits format when possible (feat:, fix:, docs:, etc.)
 
 ### File Organization
