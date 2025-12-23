@@ -62,11 +62,23 @@ data/processed/*.jpg
 data/processed/*.jpeg
 data/processed/*.png
 data/processed/*.json
+data/processed/**/*.jpg
+data/processed/**/*.jpeg
+data/processed/**/*.png
 data/results/*.json
 data/results/*.csv
 
 # Experimental/manual test scripts
 test_manual_*.py
+test_ocr.py
+test_roi.py
+extract_player_rows.py
+optimize_roi_positions.py
+optimize_roi_2stage.py
+
+# Output directories from experiments
+output_*/
+test_output/
 
 # Keep example files
 !data/raw/example.jpg

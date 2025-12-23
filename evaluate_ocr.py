@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 from preprocessing.image_processor import ImageProcessor
 from preprocessing.roi_extractor import ROIExtractor
 from ocr.tesseract_ocr import TesseractOCR
+from extract_player_rows import extract_player_rows_from_image
 
 
 def load_ground_truth(json_path: Path) -> Dict:
@@ -41,13 +42,12 @@ def evaluate_single_image(
     # Load ground truth
     gt_data = load_ground_truth(ground_truth_path)
 
-    # Load image
-    processor = ImageProcessor()
-    image = processor.load_image(image_path)
+    # Extract player rows using improved method
+    player_rows = extract_player_rows_from_image(image_path)
 
-    # Extract ROIs
+    # Initialize processor and extractor
+    processor = ImageProcessor()
     extractor = ROIExtractor()
-    sheets = extractor.separate_sheets(image)
 
     # Initialize OCR
     ocr = TesseractOCR(lang="eng", psm=7)
@@ -64,76 +64,63 @@ def evaluate_single_image(
         'details': []
     }
 
-    # Process each sheet
-    for sheet_idx, sheet in enumerate(sheets):
-        if sheet_idx >= len(gt_data['sheets']):
+    # Process each player row
+    gt_sheet = gt_data['sheets'][0]  # Only process first sheet for now
+
+    for row_idx, player_row in enumerate(player_rows):
+        match_idx = row_idx // 2
+        player_idx = row_idx % 2
+
+        if match_idx >= len(gt_sheet['matches']):
             break
 
-        gt_sheet = gt_data['sheets'][sheet_idx]
+        gt_match = gt_sheet['matches'][match_idx]
+        gt_player = gt_match['players'][player_idx]
 
-        # Detect match areas
-        match_rois = extractor.detect_match_areas(sheet, num_matches=5)
+        # Extract field ROIs from this player row
+        fields = extractor.extract_all_fields(player_row)
 
-        # Process each match
-        for match_idx, match_roi in enumerate(match_rois):
-            if match_idx >= len(gt_sheet['matches']):
-                break
+        # Test each field
+        for field_name in ['player_number', 'skill_level', 'total_score']:
+            if field_name not in fields:
+                continue
 
-            gt_match = gt_sheet['matches'][match_idx]
-            match_area = match_roi.extract(sheet)
+            roi = fields[field_name]
+            if roi.image is None:
+                continue
 
-            # Extract field ROIs
-            fields = extractor.extract_all_fields(match_area)
+            # Preprocess
+            preprocessed = processor.preprocess_pipeline(
+                roi.image,
+                denoise=True,
+                threshold=True,
+                threshold_method="adaptive"
+            )
 
-            # Process each player
-            for player_idx, gt_player in enumerate(gt_match['players']):
-                # For now, we process both players together
-                # TODO: Separate ROI extraction for each player row
+            # OCR
+            ocr_text = ocr.extract_numbers(preprocessed)
+            gt_value = gt_player.get(field_name, '')
 
-                # Test each field
-                for field_name in ['player_number', 'skill_level', 'total_score']:
-                    if field_name not in fields:
-                        continue
+            # Calculate accuracy
+            is_correct = calculate_accuracy(ocr_text, gt_value)
 
-                    roi = fields[field_name]
-                    if roi.image is None:
-                        continue
+            if is_correct is not None:
+                results['total_fields'] += 1
+                results['by_field_type'][field_name]['total'] += 1
 
-                    # Preprocess
-                    preprocessed = processor.preprocess_pipeline(
-                        roi.image,
-                        denoise=True,
-                        threshold=True,
-                        threshold_method="adaptive"
-                    )
+                if is_correct:
+                    results['correct_fields'] += 1
+                    results['by_field_type'][field_name]['correct'] += 1
 
-                    # OCR
-                    ocr_text = ocr.extract_numbers(preprocessed)
-                    gt_value = gt_player.get(field_name, '')
-
-                    # Calculate accuracy
-                    is_correct = calculate_accuracy(ocr_text, gt_value)
-
-                    if is_correct is not None:
-                        results['total_fields'] += 1
-                        results['by_field_type'][field_name]['total'] += 1
-
-                        if is_correct:
-                            results['correct_fields'] += 1
-                            results['by_field_type'][field_name]['correct'] += 1
-
-                        results['details'].append({
-                            'sheet': sheet_idx,
-                            'match': match_idx,
-                            'player': player_idx,
-                            'field': field_name,
-                            'predicted': ocr_text,
-                            'actual': gt_value,
-                            'correct': is_correct
-                        })
-
-                # Only process first player for now (need to fix ROI for 2 players)
-                break
+                results['details'].append({
+                    'sheet': 0,
+                    'match': match_idx,
+                    'player': player_idx,
+                    'field': field_name,
+                    'predicted': ocr_text,
+                    'actual': gt_value,
+                    'correct': is_correct
+                })
 
     # Calculate overall accuracy
     if results['total_fields'] > 0:

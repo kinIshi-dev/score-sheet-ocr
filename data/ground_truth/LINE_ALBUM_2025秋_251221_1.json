@@ -11,23 +11,23 @@
             {
               "player_index": 0,
               "player_number": "13441",
-              "player_name": "",
+              "player_name": "Tomatsu",
               "skill_level": "3",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "1",
               "total_score": "25",
-              "match_score": "",
+              "match_score": "16",
               "match_time": ""
             },
             {
               "player_index": 1,
               "player_number": "7082",
-              "player_name": "",
+              "player_name": "Yanase",
               "skill_level": "2",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "0",
               "total_score": "9",
-              "match_score": "",
+              "match_score": "4",
               "match_time": ""
             }
           ]
@@ -38,23 +38,23 @@
             {
               "player_index": 0,
               "player_number": "13252",
-              "player_name": "",
+              "player_name": "Inoue",
               "skill_level": "6",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "4",
               "total_score": "46",
-              "match_score": "",
+              "match_score": "13",
               "match_time": ""
             },
             {
               "player_index": 1,
               "player_number": "11216",
-              "player_name": "",
+              "player_name": "Hiraoka",
               "skill_level": "4",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "5",
               "total_score": "27",
-              "match_score": "",
+              "match_score": "7",
               "match_time": ""
             }
           ]
@@ -65,23 +65,23 @@
             {
               "player_index": 0,
               "player_number": "12012",
-              "player_name": "",
+              "player_name": "Kato",
               "skill_level": "3",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "2",
               "total_score": "20",
-              "match_score": "",
+              "match_score": "7",
               "match_time": ""
             },
             {
               "player_index": 1,
               "player_number": "07083",
-              "player_name": "",
+              "player_name": "Enomoto",
               "skill_level": "2",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "2",
               "total_score": "19",
-              "match_score": "",
+              "match_score": "13",
               "match_time": ""
             }
           ]
@@ -92,23 +92,23 @@
             {
               "player_index": 0,
               "player_number": "09289",
-              "player_name": "",
+              "player_name": "Shima",
               "skill_level": "7",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "10",
               "total_score": "41",
-              "match_score": "",
+              "match_score": "6",
               "match_time": ""
             },
             {
               "player_index": 1,
               "player_number": "16459",
-              "player_name": "",
+              "player_name": "Arai",
               "skill_level": "1",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "2",
               "total_score": "14",
-              "match_score": "",
+              "match_score": "14",
               "match_time": ""
             }
           ]
@@ -119,23 +119,23 @@
             {
               "player_index": 0,
               "player_number": "10097",
-              "player_name": "",
+              "player_name": "Moriyama",
               "skill_level": "4",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "0",
               "total_score": "28",
-              "match_score": "",
+              "match_score": "8",
               "match_time": ""
             },
             {
               "player_index": 1,
               "player_number": "13250",
-              "player_name": "",
+              "player_name": "Ikema",
               "skill_level": "2",
               "total_innings": "",
-              "safety_count": "",
+              "safety_count": "1",
               "total_score": "19",
-              "match_score": "",
+              "match_score": "12",
               "match_time": ""
             }
           ]
