@@ -75,6 +75,7 @@ test_roi.py
 extract_player_rows.py
 optimize_roi_positions.py
 optimize_roi_2stage.py
+analyze_match_lines.py
 
 # Output directories from experiments
 output_*/
